@@ -12,6 +12,7 @@ namespace Starvania {
 
         [Header("Settings")]
 
+        [Tooltip("How long the sword collider is active")]
         [SerializeField]
         private float attackDuration = 0.2f;
 
@@ -40,7 +41,7 @@ namespace Starvania {
 
         void OnTriggerEnter2D(Collider2D collider)
         {
-            if (collider.gameObject.TryGetComponent(out EnemyDeathAnimator enemy))
+            if (collider.gameObject.TryGetComponent(out EnemyDeathState enemy))
             {
                 enemy.StartDeathSequence(playerMovement.transform.position);
             }

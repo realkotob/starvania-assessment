@@ -1,17 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Starvania
 {
-    public class EnemyMovement : MonoBehaviour
+    public class EnemyMoveState : MonoBehaviour
     {
         [Header("Settings")]
-        [SerializeField] private float speed = 2f;
+        [Tooltip("The speed at which the enemy moves")]
+        [SerializeField] private float moveSpeed = 2f;
 
         [Header("References")]
         [SerializeField] private Animator animator;
+        [SerializeField] private EnemyDeathState enemyDeathAnimator;
+        [SerializeField] private EnemyAttackState enemyRangedAttack; 
 
+
+        public UnityAction onWalk;
+        
         private Rigidbody2D rigidBody;
         void Start()
         {
@@ -24,14 +31,19 @@ namespace Starvania
 
         private void StartWalking()
         {
+            onWalk?.Invoke();
+
             animator.SetTrigger("Walk");
 
             Vector2 randomDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
-            rigidBody.velocity = randomDirection * speed;
+            rigidBody.velocity = randomDirection * moveSpeed;
         }
 
         void Update()
         {
+            if(enemyDeathAnimator.isDead){
+                return;
+            }
             // Reverse direction when reached edge of screen
             if (transform.position.x > 8.5f || transform.position.x < -8.5f)
             {

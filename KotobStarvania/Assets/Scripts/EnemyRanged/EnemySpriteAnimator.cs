@@ -8,7 +8,7 @@ namespace Starvania
     {
 
         [Header("References")]
-        [SerializeField] private EnemyDeathAnimator deathAnimator;
+        [SerializeField] private EnemyDeathState deathAnimator;
         void Start()
         {
 

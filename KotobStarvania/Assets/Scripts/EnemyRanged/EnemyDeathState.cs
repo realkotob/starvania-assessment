@@ -3,21 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Starvania
 {
-    public class EnemyDeathAnimator : MonoBehaviour
+    public class EnemyDeathState : MonoBehaviour
     {
         [Header("Settings")]
-
+        [Tooltip("How far the enemy will be knocked back when killed")]
         [SerializeField] private float knockBackStrength = 1f;
+        [Tooltip("How long the enemy will be knocked back when killed")]
         [SerializeField] private float knockBackDuration = 0.2f;
 
         [Header("References")]
 
         [SerializeField] private Animator animator;
 
-        private bool isDead = false;
+        public UnityAction onDeath;
+        [NonSerialized] public bool isDead = false;
 
         void Start()
         {
@@ -29,6 +32,8 @@ namespace Starvania
             if(isDead){
                 return;
             }
+
+            onDeath?.Invoke();
 
             isDead = true;
 

@@ -9,7 +9,9 @@ namespace Starvania
     public class PlayerLookAt : MonoBehaviour
     {
         [Header("Settings")]
+        [Tooltip("Attack range in degrees")]
         [SerializeField] private float attackRange = 30f;
+        [Tooltip("Attack duration in seconds")]
         [SerializeField] private float attackDuration = 0.2f;
 
         [Header("References")]

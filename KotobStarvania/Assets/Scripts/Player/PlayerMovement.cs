@@ -8,6 +8,7 @@ namespace Starvania
     public class PlayerMovement : MonoBehaviour
     {
         [Header("Settings")]
+        [Tooltip("The speed at which the player moves")]
         [SerializeField] private float moveSpeed = 5;
 
         [Header("References")]
