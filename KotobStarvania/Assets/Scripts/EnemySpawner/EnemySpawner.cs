@@ -2,37 +2,65 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+namespace Starvania
 {
-    [Header("Settings")]
-    [SerializeField] private float spawnRadius = 5f;
-
-    [Header("References")]
-    [SerializeField] private GameObject enemyPrefab;
-
-
-    void Start()
+    public class EnemySpawner : MonoBehaviour
     {
-        transform.localScale = new Vector3(spawnRadius, spawnRadius, 1);
+        [Header("Settings")]
+        [SerializeField] private float spawnRadius = 5f;
 
-        StartCoroutine(StartSpawningEnemies());
-    }
+        [Header("References")]
+        [SerializeField] private GameObject enemyPrefab;
 
-    IEnumerator StartSpawningEnemies(){
-        var randomDuration = Random.Range(1f, 5f);
-        yield return new WaitForSeconds(randomDuration);
 
-        while (true){
-            yield return new WaitForSeconds(4f);
-            SpawnEnemy();
+        void Start()
+        {
+            transform.localScale = new Vector3(spawnRadius, spawnRadius, 1);
+
+            StartCoroutine(StartSpawningEnemies());
         }
-    }
 
-    void SpawnEnemy(){
-        var randomPosition = Random.insideUnitCircle * (spawnRadius -1f);
-        var enemy = Instantiate(enemyPrefab, transform.position + new Vector3(randomPosition.x, randomPosition.y, 0), Quaternion.identity);
-        enemy.transform.parent = transform;
-    }
+        IEnumerator StartSpawningEnemies()
+        {
+            var randomDuration = Random.Range(1f, 5f);
+            yield return new WaitForSeconds(randomDuration);
 
-    
+            while (true)
+            {
+                yield return new WaitForSeconds(4f);
+                SpawnEnemy();
+            }
+        }
+
+        void SpawnEnemy()
+        {
+            var randomPosition = Random.insideUnitCircle * (spawnRadius - 1f);
+            var newPosition = transform.position + new Vector3(randomPosition.x, randomPosition.y, 0);
+            var positionIsInsideScreen = true;
+            while (positionIsInsideScreen)
+            {
+                positionIsInsideScreen = false;
+                if (newPosition.x > 8.5f || newPosition.x < -8.5f)
+                {
+                    positionIsInsideScreen = true;
+                }
+
+                if (newPosition.y > 4.5f || newPosition.y < -4.5f)
+                {
+                    positionIsInsideScreen = true;
+                }
+                randomPosition = Random.insideUnitCircle * (spawnRadius - 1f);
+                newPosition = transform.position + new Vector3(randomPosition.x, randomPosition.y, 0);
+            }
+
+
+            var enemy = Instantiate(enemyPrefab, newPosition, Quaternion.identity);
+            enemy.transform.parent = transform;
+
+          
+      
+        }
+
+
+    }
 }

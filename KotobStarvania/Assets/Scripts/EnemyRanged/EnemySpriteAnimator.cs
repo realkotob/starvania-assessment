@@ -2,21 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Starvania{
-
-public class EnemySpriteAnimator : MonoBehaviour
+namespace Starvania
 {
-
-    [Header("References")]
-    [SerializeField] private EnemyDeathAnimator deathAnimator;
-    void Start()
+    public class EnemySpriteAnimator : MonoBehaviour
     {
-        
-    }
 
-    public void onDeathAnimationFinish(){
-        deathAnimator.FinishDeathAnimation();
+        [Header("References")]
+        [SerializeField] private EnemyDeathAnimator deathAnimator;
+        void Start()
+        {
+
+        }
+
+        public void onDeathAnimationFinish()
+        {
+            deathAnimator.FinishDeathAnimation();
+        }
+
     }
-    
-}
 }
