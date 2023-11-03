@@ -1,42 +1,44 @@
 using UnityEngine;
-
-public class MonoSingleton<T> : MonoBehaviour where T : Component
+namespace Starvania
 {
-    private static int m_referenceCount = 0;
-
-    private static T m_instance;
-
-    public static T instance
+    public class MonoSingleton<T> : MonoBehaviour where T : Component
     {
-        get
+        private static int m_referenceCount = 0;
+
+        private static T m_instance;
+
+        public static T instance
         {
-            if (m_instance == null)
+            get
             {
-                m_instance = FindObjectOfType<T>();
+                if (m_instance == null)
+                {
+                    m_instance = FindObjectOfType<T>();
+                }
+                return m_instance;
             }
-            return m_instance;
-        }
-    }
-
-    void Awake()
-    {
-        m_referenceCount++;
-        if (m_referenceCount > 1)
-        {
-            Debug
-                .LogWarning("Attemped to create additional static instance: " +
-                this.gameObject.name);
         }
 
-        m_instance = this as T;
-    }
-
-    void OnDestroy()
-    {
-        m_referenceCount--;
-        if (m_referenceCount == 0)
+        void Awake()
         {
-            m_instance = null;
+            m_referenceCount++;
+            if (m_referenceCount > 1)
+            {
+                Debug
+                    .LogWarning("Attemped to create additional static instance: " +
+                    this.gameObject.name);
+            }
+
+            m_instance = this as T;
+        }
+
+        void OnDestroy()
+        {
+            m_referenceCount--;
+            if (m_referenceCount == 0)
+            {
+                m_instance = null;
+            }
         }
     }
 }

@@ -520,6 +520,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c998a0cd2b5e349c29d1d6888aba874d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMovement: {fileID: 1440957616735507082}
+  attackDuration: 0.2
 --- !u!1 &8938109445575599950
 GameObject:
   m_ObjectHideFlags: 0
