@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Starvania
 {
-    public class EnemyAnimator : MonoBehaviour
+    public class EnemyDeathAnimator : MonoBehaviour
     {
         [Header("Settings")]
 
@@ -16,21 +16,48 @@ namespace Starvania
         [Header("References")]
 
         [SerializeField] private Animator animator;
+
+        private bool isDead = false;
+
         void Start()
         {
 
         }
 
-        public void playHurtAnimation()
+        public void StartDeathSequence(Vector3 position)
+        {
+            if(isDead){
+                return;
+            }
+
+            isDead = true;
+
+            PlayHurtAnimation();
+            KnockBack(position);
+
+            Invoke(nameof(PlayDeathAnimation), knockBackDuration);
+        }
+
+        public void PlayHurtAnimation()
         {
             animator.SetTrigger("Hurt");
         }
 
-        internal void knockBack(Vector3 position)
+        internal void KnockBack(Vector3 position)
         {
             transform.DOKill();
             var direction = (transform.position - position).normalized;
             transform.DOMove(transform.position + (direction * knockBackStrength), knockBackDuration);
+        }
+
+        public void PlayDeathAnimation()
+        {
+            animator.SetTrigger("Die");
+        }
+
+        internal void FinishDeathAnimation()
+        {
+            Destroy(gameObject);
         }
     }
 }

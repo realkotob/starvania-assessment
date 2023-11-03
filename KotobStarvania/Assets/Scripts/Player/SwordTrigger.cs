@@ -40,10 +40,9 @@ namespace Starvania {
 
         void OnTriggerEnter2D(Collider2D collider)
         {
-            if (collider.gameObject.TryGetComponent(out EnemyAnimator enemy))
+            if (collider.gameObject.TryGetComponent(out EnemyDeathAnimator enemy))
             {
-                enemy.playHurtAnimation();
-                enemy.knockBack(playerMovement.transform.position);
+                enemy.StartDeathSequence(playerMovement.transform.position);
             }
         }
     }
