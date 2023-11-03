@@ -32,6 +32,18 @@ namespace Starvania
             if(rigidBody.velocity.magnitude > 0)
             {
                 animator.SetTrigger("Run");
+
+                if (_direction.x > 0)
+                {
+                    animator.transform.localScale = new Vector3(1, 1, 1);
+                    animator.transform.rotation = Quaternion.LookRotation(Vector3.forward, _direction) * Quaternion.Euler(0, 0, 90);
+                }
+                else
+                {
+                    animator.transform.localScale = new Vector3(-1, 1, 1);
+                    animator.transform.rotation = Quaternion.LookRotation(Vector3.forward, _direction) * Quaternion.Euler(0, 0, -90);
+                }
+
             }
             else
             {

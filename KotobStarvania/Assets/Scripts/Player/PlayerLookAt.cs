@@ -30,11 +30,7 @@ namespace Starvania
                 swordParent.transform.rotation = Quaternion.LookRotation(Vector3.forward, _direction);
             }
 
-            if(_direction.x > 0){
-                knightSprite.transform.localScale = new Vector3(1, 1, 1);
-            }else{
-                knightSprite.transform.localScale = new Vector3(-1, 1, 1);
-            }
+            
         }
 
 
