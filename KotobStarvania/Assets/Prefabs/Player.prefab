@@ -187,6 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 1440957616735507082}
   playerLookAt: {fileID: 7115013401332529379}
+  swordTrigger: {fileID: 4235701012359654015}
 --- !u!114 &1440957616735507082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,9 +227,9 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 869146048943676305}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -397,6 +398,7 @@ GameObject:
   - component: {fileID: 9145471234557160456}
   - component: {fileID: 794080619463358144}
   - component: {fileID: 1201111154386356330}
+  - component: {fileID: 4235701012359654015}
   m_Layer: 0
   m_Name: SwordSprite
   m_TagString: Untagged
@@ -457,8 +459,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1754308963
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e8fc26b77bfa94635a0dbf415afec773, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -500,12 +502,24 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.26}
   m_Size: {x: 0.45, y: 1.35}
   m_Direction: 0
+--- !u!114 &4235701012359654015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5636621768062919100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c998a0cd2b5e349c29d1d6888aba874d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8938109445575599950
 GameObject:
   m_ObjectHideFlags: 0

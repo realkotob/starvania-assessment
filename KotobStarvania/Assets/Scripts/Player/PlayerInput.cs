@@ -11,6 +11,7 @@ namespace Starvania
         [Header("References")]
         [SerializeField] private PlayerMovement playerMovement;
         [SerializeField] private PlayerLookAt playerLookAt;
+        [SerializeField] private SwordTrigger swordTrigger;
 
         void Start()
         {
@@ -30,6 +31,7 @@ namespace Starvania
         public void OnSword(InputAction.CallbackContext context)
         {
             playerLookAt.onSword?.Invoke();
+            swordTrigger.onSword?.Invoke();
         }
 
         public void OnHook(InputAction.CallbackContext context)
