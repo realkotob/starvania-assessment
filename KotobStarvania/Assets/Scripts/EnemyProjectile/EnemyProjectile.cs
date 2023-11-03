@@ -5,27 +5,19 @@ using UnityEngine;
 
 namespace Starvania
 {
-    public class EnemyAttackTrigger : MonoBehaviour
+    public class EnemyProjectile : MonoBehaviour
     {
-
-        [Header("References")]
-        [SerializeField] private EnemyAttackState enemyRangedAttack;
-
         void Start()
         {
-
+            Destroy(gameObject, 10f);
         }
 
         void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.TryGetComponent(out PlayerMovement playerMovement))
             {
-                enemyRangedAttack.StartAttack(playerMovement.transform.position);
+                Destroy(gameObject);
             }
         }
-
-
-
-       
     }
 }

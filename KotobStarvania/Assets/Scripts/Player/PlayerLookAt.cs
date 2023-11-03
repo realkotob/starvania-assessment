@@ -47,6 +47,7 @@ namespace Starvania
 
         void SwordAttack(){
             isAttacking = true;
+            swordParent.transform.DOKill();
 
             var centerRotation = Quaternion.LookRotation(Vector3.forward, currentDirection);
             swordParent.transform.rotation = centerRotation * Quaternion.Euler(0, 0, attackRange * Mathf.Sign(currentDirection.x));

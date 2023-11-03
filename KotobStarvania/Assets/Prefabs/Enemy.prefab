@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcfe9779d58fa40129b5a97d94d81b08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  moveSpeed: 2
   animator: {fileID: 7799168915632645231}
   enemyDeathAnimator: {fileID: 5465259580889309567}
   enemyRangedAttack: {fileID: 3423431745598454123}
@@ -232,6 +232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15fc8cc13c3654d109ebe2659432d69d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 7799168915632645231}
+  projectilePrefab: {fileID: 5703060147253796800, guid: 6f313434774d846cc9d7940b11de3d37, type: 3}
 --- !u!114 &5465259580889309567
 MonoBehaviour:
   m_ObjectHideFlags: 0
