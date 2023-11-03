@@ -45,6 +45,10 @@ namespace Starvania {
             {
                 enemy.StartDeathSequence(playerMovement.transform.position);
             }
+            if (collider.gameObject.TryGetComponent(out EnemyProjectile projectile))
+            {
+                projectile.Deflect();
+            }
         }
     }
 }
