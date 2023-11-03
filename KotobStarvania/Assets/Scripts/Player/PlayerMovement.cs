@@ -7,6 +7,8 @@ namespace Starvania
 {
     public class PlayerMovement : MonoBehaviour
     {
+        [Header("Settings")]
+        [SerializeField] private float moveSpeed = 5;
 
         [Header("References")]
         [SerializeField] private Animator animator;
@@ -27,7 +29,7 @@ namespace Starvania
         {
             direction = _direction;
 
-            rigidBody.velocity = direction * 5;
+            rigidBody.velocity = direction * moveSpeed;
 
             if(rigidBody.velocity.magnitude > 0)
             {

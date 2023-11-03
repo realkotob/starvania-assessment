@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,30 +8,57 @@ namespace Starvania
 {
     public class PlayerLookAt : MonoBehaviour
     {
+        [Header("Settings")]
+        [SerializeField] private float attackRange = 30f;
+        [SerializeField] private float attackDuration = 0.2f;
 
         [Header("References")]
         [SerializeField] private GameObject swordParent;
+        [SerializeField] private GameObject swordSprite;
         [SerializeField] private GameObject knightSprite;
 
         public UnityAction<Vector2> onLook;
+        public UnityAction onSword;
+
+        private Vector2 currentDirection;
+        private bool isAttacking = false;
         void Start()
         {
-            onLook += Look;
+            onLook += LookAround;
+            onSword += SwordAttack;
         }
 
-        void Look(Vector2 _direction)
+        void LookAround(Vector2 _direction)
         {
 
             if (Platform.IsOnPc())
             {
                 _direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             }
-            if (_direction.magnitude > 0)
-            {
-                swordParent.transform.rotation = Quaternion.LookRotation(Vector3.forward, _direction);
-            }
 
-            
+            currentDirection = _direction;
+            if (currentDirection.magnitude > 0 && !isAttacking)
+            {
+                swordParent.transform.rotation = Quaternion.LookRotation(Vector3.forward, currentDirection);
+            }
+        }
+
+        void SwordAttack(){
+            isAttacking = true;
+
+            var centerRotation = Quaternion.LookRotation(Vector3.forward, currentDirection);
+            swordParent.transform.rotation = centerRotation * Quaternion.Euler(0, 0, attackRange * Mathf.Sign(currentDirection.x));
+            // Rotate to centerRotation +45 in 0.5 seconds
+            swordParent.transform.DORotateQuaternion(centerRotation * Quaternion.Euler(0, 0, - attackRange * Mathf.Sign(currentDirection.x)), attackDuration).onComplete += () => {
+                swordParent.transform.rotation = centerRotation;
+                isAttacking = false;
+            };
+
+            swordSprite.transform.DOScale(0.8f, attackDuration / 2).SetEase(Ease.OutBack).onComplete += () => {
+                swordSprite.transform.DOScale(0.65f, attackDuration / 2).SetEase(Ease.InBack);
+            };
+
+
         }
 
 

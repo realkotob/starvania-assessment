@@ -29,7 +29,7 @@ namespace Starvania
 
         public void OnSword(InputAction.CallbackContext context)
         {
-            Debug.Log(context);
+            playerLookAt.onSword?.Invoke();
         }
 
         public void OnHook(InputAction.CallbackContext context)
