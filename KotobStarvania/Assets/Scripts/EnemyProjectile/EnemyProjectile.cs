@@ -35,7 +35,7 @@ namespace Starvania
         {
             if (!isDeflected && other.gameObject.TryGetComponent(out PlayerMovement playerMovement))
             {
-                // TODO: Add damage to player
+                HealthSliderManager.Instance.RemoveHealth(10);
                 Destroy(gameObject);
             }
 

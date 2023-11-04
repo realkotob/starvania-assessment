@@ -7,7 +7,7 @@ namespace Starvania
 
         private static T m_instance;
 
-        public static T instance
+        public static T Instance
         {
             get
             {
