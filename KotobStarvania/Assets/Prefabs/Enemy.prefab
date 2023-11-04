@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyRangedAttack: {fileID: 3423431745598454123}
+  enemyHookedState: {fileID: 1496764238270618650}
 --- !u!58 &4947481645959761106
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -177,9 +178,10 @@ GameObject:
   - component: {fileID: 7316346459060791648}
   - component: {fileID: 3423431745598454123}
   - component: {fileID: 5465259580889309567}
+  - component: {fileID: 1496764238270618650}
   - component: {fileID: 5903302054598687533}
   - component: {fileID: 9159004378756096617}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,6 +222,7 @@ MonoBehaviour:
   animator: {fileID: 7799168915632645231}
   enemyDeathAnimator: {fileID: 5465259580889309567}
   enemyRangedAttack: {fileID: 3423431745598454123}
+  enemyHookedState: {fileID: 1496764238270618650}
 --- !u!114 &3423431745598454123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,6 +252,19 @@ MonoBehaviour:
   knockBackStrength: 1.5
   knockBackDuration: 0.2
   animator: {fileID: 7799168915632645231}
+--- !u!114 &1496764238270618650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132224542794845992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6aee1a4b18824ff09ba0b26adf9ea64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyMovement: {fileID: 7316346459060791648}
 --- !u!50 &5903302054598687533
 Rigidbody2D:
   serializedVersion: 4
@@ -545,6 +561,6 @@ SpriteRenderer:
   m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

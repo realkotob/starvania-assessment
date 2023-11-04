@@ -12,6 +12,7 @@ namespace Starvania
         [SerializeField] private PlayerMovement playerMovement;
         [SerializeField] private PlayerLookAt playerLookAt;
         [SerializeField] private SwordTrigger swordTrigger;
+        [SerializeField] private PlayerHookState playerHookState;
 
         void Start()
         {
@@ -20,6 +21,12 @@ namespace Starvania
 
         public void OnMove(InputAction.CallbackContext context)
         {
+            if (playerHookState.isHooking)
+            {
+                // Cancel hooking
+                playerHookState.ResetHook();
+                return;
+            }
             playerMovement.onMove?.Invoke(context.ReadValue<Vector2>());
         } 
 
@@ -30,13 +37,25 @@ namespace Starvania
 
         public void OnSword(InputAction.CallbackContext context)
         {
+            if(playerHookState.isHooking){
+                // Attacking while hooking stops hooking
+                playerHookState.ResetHook();
+            }
+
             playerLookAt.onSword?.Invoke();
             swordTrigger.onSword?.Invoke();
         }
 
         public void OnHook(InputAction.CallbackContext context)
         {
-            Debug.Log(context);
+            if (playerHookState.isHooking)
+            {
+                // Cancel hooking
+                playerHookState.ResetHook();
+                return;
+            }
+
+            playerHookState.onHook?.Invoke();
         } 
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -22,7 +23,7 @@ namespace Starvania
         public UnityAction<Vector2> onLook;
         public UnityAction onSword;
 
-        private Vector2 currentDirection;
+        [NonSerialized] public Vector2 currentDirection;
         private bool isAttacking = false;
         void Start()
         {

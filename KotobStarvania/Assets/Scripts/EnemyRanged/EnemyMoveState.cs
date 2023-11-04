@@ -14,7 +14,8 @@ namespace Starvania
         [Header("References")]
         [SerializeField] private Animator animator;
         [SerializeField] private EnemyDeathState enemyDeathAnimator;
-        [SerializeField] private EnemyAttackState enemyRangedAttack; 
+        [SerializeField] private EnemyAttackState enemyRangedAttack;
+        [SerializeField] private EnemyHookedState enemyHookedState;
 
 
         public UnityAction onWalk;
@@ -29,8 +30,12 @@ namespace Starvania
             StartWalking();
         }
 
-        private void StartWalking()
+        public void StartWalking()
         {
+            if(enemyDeathAnimator.isDead)
+            {
+                return;
+            }
             onWalk?.Invoke();
 
             animator.SetTrigger("Walk");
@@ -41,7 +46,13 @@ namespace Starvania
 
         void Update()
         {
-            if(enemyDeathAnimator.isDead){
+            CheckScreenBounds();
+        }
+
+        private void CheckScreenBounds()
+        {
+            if (enemyDeathAnimator.isDead || enemyHookedState.isHooked)
+            {
                 return;
             }
             // Reverse direction when reached edge of screen
@@ -54,9 +65,6 @@ namespace Starvania
             {
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, -rigidBody.velocity.y);
             }
-
-
         }
-
     }
 }
