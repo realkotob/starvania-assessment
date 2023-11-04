@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Starvania;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,6 +17,7 @@ namespace Starvania
         [Header("References")]
         [SerializeField] private PlayerLookAt playerLookAt;
         [SerializeField] private GameObject swordParent;
+        [SerializeField] private HookLinkPool hookLinkPool;
 
         public UnityAction onHook;
 
@@ -74,6 +76,31 @@ namespace Starvania
             swordParent.SetActive(true);
 
             lastHookedEnemy.ResetHook();
+            hookLinkPool.HideHookLinks();
+        }
+
+        public void Update(){
+            if(isHooking){
+                UpdateHookLinks();
+            }
+        }
+
+        private void UpdateHookLinks()
+        {
+            hookLinkPool.HideHookLinks();
+
+            var hookDirection = (lastHookedEnemy.transform.position - transform.position).normalized;
+
+            var distance = Vector2.Distance(transform.position, lastHookedEnemy.transform.position);
+            var hookLinkCount = Mathf.FloorToInt(distance / 0.15f);
+
+            for (int i = 0; i < hookLinkCount; i++)
+            {
+                var hookLinkPosition = transform.position + (hookDirection * (i + 1) * 0.15f);
+                var hookLink = hookLinkPool.GetHookLink();
+                hookLink.transform.position = hookLinkPosition;
+                hookLink.SetActive(true);
+            }
         }
     }
 }

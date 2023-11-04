@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1440957616735507082}
   - component: {fileID: 7115013401332529379}
   - component: {fileID: 4303226256303123715}
+  - component: {fileID: 6896280499678234489}
   - component: {fileID: 2201364708500833714}
   - component: {fileID: 1633215451191883025}
   m_Layer: 0
@@ -236,6 +237,20 @@ MonoBehaviour:
   hookSpeed: 5
   playerLookAt: {fileID: 7115013401332529379}
   swordParent: {fileID: 8938109445575599950}
+  hookLinkPool: {fileID: 6896280499678234489}
+--- !u!114 &6896280499678234489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869146048943676305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a4e4d7a213064e0ea0cc70e625d6d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hookLinkPrefab: {fileID: 4902971982262124545, guid: 7fdda0381dae54bde9fde437294b3bd8, type: 3}
 --- !u!50 &2201364708500833714
 Rigidbody2D:
   serializedVersion: 4
