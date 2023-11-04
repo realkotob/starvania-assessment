@@ -10,6 +10,7 @@ namespace Starvania
     {
 
         private Rigidbody2D rigidBody;
+        private Animator animator;
         private Vector3 startDirection;
 
 
@@ -23,6 +24,7 @@ namespace Starvania
         public void Initialize(Vector3 direction, float projectileSpeed)
         {
             rigidBody = GetComponent<Rigidbody2D>();
+            animator = GetComponent<Animator>();
 
             startDirection = direction;
 
@@ -53,6 +55,7 @@ namespace Starvania
             }
 
             isDeflected = true;
+            animator.SetTrigger("Deflected");
 
             rigidBody.velocity =  -startDirection * rigidBody.velocity.magnitude;
 
