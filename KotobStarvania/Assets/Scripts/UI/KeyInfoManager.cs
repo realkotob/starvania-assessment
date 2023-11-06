@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,10 @@ namespace Starvania
         {
             keyInfoText.text = keysCollected + "/" + keyCount;
         }
-       
+
+        public bool IsAllKeysCollected()
+        {
+            return keysCollected >= keyCount;
+        }
     }
 }

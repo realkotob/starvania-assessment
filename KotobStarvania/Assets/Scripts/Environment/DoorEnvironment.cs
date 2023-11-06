@@ -25,6 +25,17 @@ namespace Starvania
             doorSpriteOpen.SetActive(false);
         }
 
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.TryGetComponent(out PlayerMovement playerMovement))
+            {
+                if(KeyInfoManager.Instance.IsAllKeysCollected()){
+                    playerMovement.SetCanMove(false);
+                    WinPopupManager.Instance.ShowWinPopup();
+                }
+            }
+        }
+
        
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine.Events;
 
 namespace Starvania
 {
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : MonoSingleton<PlayerMovement>
     {
         [Header("Settings")]
         [Tooltip("The speed at which the player moves")]
@@ -19,6 +20,8 @@ namespace Starvania
         private Rigidbody2D rigidBody;
 
         private Vector2 direction;
+
+        private bool canMove = true;
         void Start()
         {
             rigidBody = GetComponent<Rigidbody2D>();
@@ -28,6 +31,10 @@ namespace Starvania
 
         void Move(Vector2 _direction)
         {
+            if(!canMove)
+            {
+                return;
+            }
             direction = _direction;
 
             rigidBody.velocity = direction * moveSpeed;
@@ -54,6 +61,13 @@ namespace Starvania
             }
         }
 
-  
+        internal void SetCanMove(bool value)
+        {
+            canMove = value;
+            if(!canMove)
+            {
+                rigidBody.velocity = Vector2.zero;
+            }
+        }
     }
 }

@@ -37,6 +37,7 @@ namespace Starvania
             healthSlider.value = currentHealth / maxHealth;
             if (currentHealth <= 0)
             {
+                PlayerMovement.Instance.SetCanMove(false);
                 LosePopupManager.Instance.ShowLosePopup();
             }
         }
