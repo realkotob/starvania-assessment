@@ -12,14 +12,18 @@ namespace Starvania
     {
 
         [Header("Settings")]
+        [Tooltip("The speed of the hook")]
         [SerializeField] private float hookSpeed = 2f;
+        [Tooltip("The speed at which the hook mana regenerates")]
         [SerializeField] private float hookManaRegen = 0.1f;
+        [Tooltip("The speed at which the hook mana drains")]
         [SerializeField] private float hookManaDrain = 0.2f;
 
         [Header("References")]
         [SerializeField] private PlayerLookAt playerLookAt;
         [SerializeField] private GameObject swordParent;
         [SerializeField] private HookLinkPool hookLinkPool;
+        [SerializeField] private AudioSource hookSound;
 
         public UnityAction onHook;
 
@@ -42,7 +46,6 @@ namespace Starvania
                 return;
             }
 
-
             var currentDirection = playerLookAt.currentDirection;
 
             // Raycast to find the closest hookable object
@@ -64,6 +67,8 @@ namespace Starvania
 
             if (closestHit.collider != null)
             {
+                hookSound.Play();
+
                 isHooking = true;
                 swordParent.SetActive(false);
 

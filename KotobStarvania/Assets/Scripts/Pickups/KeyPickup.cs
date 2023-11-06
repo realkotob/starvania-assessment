@@ -7,8 +7,9 @@ namespace Starvania
 
     public class KeyPickup : MonoBehaviour
     {
-
+        [Header("References")]
         [SerializeField] private DoorEnvironment door;
+
         void Start()
         {
 
@@ -19,7 +20,7 @@ namespace Starvania
             if (other.gameObject.TryGetComponent(out PlayerMovement playerMovement))
             {
                 KeyInfoManager.Instance.SetKeyCollected();
-                if(KeyInfoManager.Instance.IsAllKeysCollected()){
+                if (KeyInfoManager.Instance.IsAllKeysCollected()){
                     door.SetOpen();
                 }
 

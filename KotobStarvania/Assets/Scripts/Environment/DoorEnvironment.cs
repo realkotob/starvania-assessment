@@ -8,8 +8,10 @@ namespace Starvania
 
     public class DoorEnvironment : MonoBehaviour
     {
+        [Header("References")]
         [SerializeField] private GameObject doorSpriteClosed;
         [SerializeField] private GameObject doorSpriteOpen;
+        [SerializeField] private AudioSource doorOpenSound;
         void Start()
         {
 
@@ -18,6 +20,7 @@ namespace Starvania
         public void SetOpen(){
             doorSpriteClosed.SetActive(false);
             doorSpriteOpen.SetActive(true);
+            doorOpenSound.Play();
         }
 
         public void SetClosed(){

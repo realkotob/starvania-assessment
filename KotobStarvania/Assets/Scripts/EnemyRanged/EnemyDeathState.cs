@@ -19,6 +19,8 @@ namespace Starvania
 
         [SerializeField] private Animator animator;
         [SerializeField] private GameObject healthPickupPrefab;
+        [SerializeField] private AudioSource gruntSound;
+        [SerializeField] private AudioSource dieSound;
 
         public UnityAction onDeath;
         [NonSerialized] public bool isDead = false;
@@ -33,6 +35,8 @@ namespace Starvania
             if(isDead){
                 return;
             }
+
+            gruntSound.Play();
 
             onDeath?.Invoke();
 
@@ -58,6 +62,7 @@ namespace Starvania
 
         public void PlayDeathAnimation()
         {
+            dieSound.Play();
             animator.SetTrigger("Die");
 
             if (UnityEngine.Random.Range(0, 100) < 15)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,8 +10,9 @@ namespace Starvania
         [Header("References")]
         [SerializeField] 
         private Animator animator;
+        [SerializeField] private AudioSource winSound;
 
-        private bool isShown = false;
+        [NonSerialized] public bool isShown = false;
 
         void Start()
         {
@@ -25,6 +27,7 @@ namespace Starvania
                 return;
             }
             isShown = true;
+            winSound.Play();
             animator.SetTrigger("Show");
         }
 

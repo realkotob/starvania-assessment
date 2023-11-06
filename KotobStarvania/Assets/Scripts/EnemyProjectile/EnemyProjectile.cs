@@ -9,6 +9,9 @@ namespace Starvania
     public class EnemyProjectile : MonoBehaviour
     {
 
+        [Header("References")]
+        [SerializeField] private AudioSource deflectSound;
+
         private Rigidbody2D rigidBody;
         private Animator animator;
         private Vector3 startDirection;
@@ -35,6 +38,9 @@ namespace Starvania
         {
             if (!isDeflected && other.gameObject.TryGetComponent(out PlayerMovement playerMovement))
             {
+                if(WinPopupManager.Instance.isShown){
+                    return;
+                }
                 HealthSliderManager.Instance.RemoveHealth(10);
                 Destroy(gameObject);
             }
@@ -54,6 +60,8 @@ namespace Starvania
                 return;
             }
 
+            deflectSound.Play();
+            
             isDeflected = true;
             animator.SetTrigger("Deflected");
 

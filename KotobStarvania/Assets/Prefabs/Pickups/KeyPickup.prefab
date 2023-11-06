@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 0}
+  keyPickupSound: {fileID: 0}
 --- !u!58 &1083592890618031586
 CircleCollider2D:
   m_ObjectHideFlags: 0

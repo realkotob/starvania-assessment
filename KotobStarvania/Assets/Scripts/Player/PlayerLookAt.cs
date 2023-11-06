@@ -19,6 +19,7 @@ namespace Starvania
         [SerializeField] private GameObject swordParent;
         [SerializeField] private GameObject swordSprite;
         [SerializeField] private GameObject knightSprite;
+        [SerializeField] private AudioSource attackSound;
 
         public UnityAction<Vector2> onLook;
         public UnityAction onSword;
@@ -47,7 +48,11 @@ namespace Starvania
         }
 
         void SwordAttack(){
+            if(isAttacking){
+                return;
+            }
             isAttacking = true;
+            attackSound.Play();
             swordParent.transform.DOKill();
 
             var centerRotation = Quaternion.LookRotation(Vector3.forward, currentDirection);

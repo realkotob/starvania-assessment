@@ -7,8 +7,11 @@ namespace Starvania
 {
     public class KeyInfoManager : MonoSingleton<KeyInfoManager>
     {
+        [Header("References")]
         [SerializeField] private TMPro.TextMeshProUGUI keyInfoText;
         [SerializeField] private int keyCount = 1;
+        [SerializeField] private AudioSource keySound;
+
         private int keysCollected = 0;
         void Start()
         {
@@ -19,6 +22,7 @@ namespace Starvania
         {
             keysCollected++;
             UpdateKeyInfo();
+            keySound.Play();
         }
 
         public void UpdateKeyInfo()

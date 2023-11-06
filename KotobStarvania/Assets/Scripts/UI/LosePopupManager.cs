@@ -11,6 +11,7 @@ namespace Starvania
         [Header("References")]
         [SerializeField] 
         private Animator animator;
+        [SerializeField] private AudioSource loseSound;
 
         private bool isShown = false;
 
@@ -27,6 +28,7 @@ namespace Starvania
                 return;
             }
             isShown = true;
+            loseSound.Play();
             animator.SetTrigger("Show");
         }
 

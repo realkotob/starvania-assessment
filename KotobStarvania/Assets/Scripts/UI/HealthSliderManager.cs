@@ -10,6 +10,9 @@ namespace Starvania
     {
         [Header("References")]
         [SerializeField] private Slider healthSlider;
+        [SerializeField] private AudioSource potionHealSound;
+        [SerializeField] private AudioSource damageSound;
+
         [Header("Settings")]
         [SerializeField] private float maxHealth = 100;
         private float currentHealth = 100;
@@ -29,12 +32,14 @@ namespace Starvania
         {
             currentHealth = Mathf.Min(maxHealth, health + currentHealth);
             healthSlider.value = currentHealth / maxHealth;
+            potionHealSound.Play();
         }
 
         public void RemoveHealth(float health)
         {
             currentHealth -= health;
             healthSlider.value = currentHealth / maxHealth;
+            damageSound.Play();
             if (currentHealth <= 0)
             {
                 PlayerMovement.Instance.SetCanMove(false);
