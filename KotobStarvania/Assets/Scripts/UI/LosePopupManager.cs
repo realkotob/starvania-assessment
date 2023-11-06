@@ -9,21 +9,30 @@ namespace Starvania
     {
 
         [Header("References")]
-        [SerializeField] private GameObject losePopup;
+        [SerializeField] 
+        private Animator animator;
+
+        private bool isShown = false;
 
         void Start()
         {
+            animator = GetComponent<Animator>();
+
             HideLosePopup();
         }
 
         public void ShowLosePopup()
         {
-            losePopup.SetActive(true);
+            if (isShown){ 
+                return;
+            }
+            isShown = true;
+            animator.SetTrigger("Show");
         }
 
         public void HideLosePopup()
         {
-            losePopup.SetActive(false);
+            animator.SetTrigger("Hide");
         }
 
         public void OnRestartPressed(){

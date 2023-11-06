@@ -7,21 +7,30 @@ namespace Starvania
     public class WinPopupManager : MonoSingleton<WinPopupManager>
     {
         [Header("References")]
-        [SerializeField] private GameObject winPopup;
-        
-         void Start()
+        [SerializeField] 
+        private Animator animator;
+
+        private bool isShown = false;
+
+        void Start()
         {
+            animator = GetComponent<Animator>();
+
             HideWinPopup();
         }
 
         public void ShowWinPopup()
         {
-            winPopup.SetActive(true);
+            if (isShown){
+                return;
+            }
+            isShown = true;
+            animator.SetTrigger("Show");
         }
 
         public void HideWinPopup()
         {
-            winPopup.SetActive(false);
+            animator.SetTrigger("Hide");
         }
 
         public void OnRestartPressed(){
