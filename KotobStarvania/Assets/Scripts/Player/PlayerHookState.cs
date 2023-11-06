@@ -13,6 +13,8 @@ namespace Starvania
 
         [Header("Settings")]
         [SerializeField] private float hookSpeed = 2f;
+        [SerializeField] private float hookManaRegen = 0.1f;
+        [SerializeField] private float hookManaDrain = 0.2f;
 
         [Header("References")]
         [SerializeField] private PlayerLookAt playerLookAt;
@@ -24,6 +26,9 @@ namespace Starvania
         [NonSerialized] public bool isHooking = false;
 
         private EnemyHookedState lastHookedEnemy;
+
+        private float hookMana = 1f;
+   
 
         // Start is called before the first frame update
         void Start()
@@ -83,10 +88,23 @@ namespace Starvania
             if(isHooking){
                 UpdateHookLinks();
             }
+            else if (hookMana < 1f)
+            {
+                hookMana += hookManaRegen * Time.deltaTime;
+                hookMana = Mathf.Min(1f, hookMana);
+                ManaSliderManager.Instance.SetMana(hookMana);
+            }
         }
 
         private void UpdateHookLinks()
         {
+            hookMana -= hookManaDrain * Time.deltaTime;
+            ManaSliderManager.Instance.SetMana(hookMana);
+            if(hookMana <= 0){
+                ResetHook();
+                return;
+            }
+
             hookLinkPool.HideHookLinks();
 
             var hookDirection = (lastHookedEnemy.transform.position - transform.position).normalized;

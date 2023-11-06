@@ -235,6 +235,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hookSpeed: 5
+  hookManaRegen: 0.05
+  hookManaDrain: 0.23
   playerLookAt: {fileID: 7115013401332529379}
   swordParent: {fileID: 8938109445575599950}
   hookLinkPool: {fileID: 6896280499678234489}
