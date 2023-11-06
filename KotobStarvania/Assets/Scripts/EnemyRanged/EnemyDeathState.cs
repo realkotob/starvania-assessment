@@ -18,6 +18,7 @@ namespace Starvania
         [Header("References")]
 
         [SerializeField] private Animator animator;
+        [SerializeField] private GameObject healthPickupPrefab;
 
         public UnityAction onDeath;
         [NonSerialized] public bool isDead = false;
@@ -58,6 +59,11 @@ namespace Starvania
         public void PlayDeathAnimation()
         {
             animator.SetTrigger("Die");
+
+            if (UnityEngine.Random.Range(0, 100) < 15)
+            {
+                Instantiate(healthPickupPrefab, transform.position, Quaternion.identity);
+            }
         }
 
         internal void FinishDeathAnimation()

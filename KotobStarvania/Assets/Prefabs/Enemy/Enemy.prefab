@@ -252,6 +252,7 @@ MonoBehaviour:
   knockBackStrength: 1.5
   knockBackDuration: 0.2
   animator: {fileID: 7799168915632645231}
+  healthPickupPrefab: {fileID: 9195622532447482388, guid: 91457f4eccf5b4b20b820809dd30a339, type: 3}
 --- !u!114 &1496764238270618650
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -27,7 +27,7 @@ namespace Starvania
 
         public void AddHealth(float health)
         {
-            currentHealth = Mathf.Max(maxHealth, health + currentHealth);
+            currentHealth = Mathf.Min(maxHealth, health + currentHealth);
             healthSlider.value = currentHealth / maxHealth;
         }
 
