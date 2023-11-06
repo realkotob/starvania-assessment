@@ -19,7 +19,10 @@ namespace Starvania
             if (other.gameObject.TryGetComponent(out PlayerMovement playerMovement))
             {
                 KeyInfoManager.Instance.SetKeyCollected();
-                door.SetOpen();
+                if(KeyInfoManager.Instance.IsAllKeysCollected()){
+                    door.SetOpen();
+                }
+
                 Destroy(gameObject);
             }
         }
